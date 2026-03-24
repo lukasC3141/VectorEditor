@@ -32,7 +32,7 @@ public class Rectangle extends AbstractGraphicObject{
 
     @Override
     public boolean contains(Point p) {
-        //TODO implementovat zjistení bodu uvnitr obdelniku
-        return false;
+        return a + point.x >= p.x && p.x >= point.x
+                && b + point.y >= p.y && p.y >= point.y;
     }
 }

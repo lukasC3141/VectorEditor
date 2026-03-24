@@ -23,11 +23,11 @@ public class Circle extends AbstractGraphicObject{
     public void draw(Graphics2D g) {
         g.setColor(color);
         g.drawOval(point.x - r, point.y - r, 2*r, 2*r);
+
     }
 
     @Override
     public boolean contains(Point p) {
-        //TODO implementovat zjistení bodu uvnitr kruhu
-        return false;
+        return Math.pow(p.x - point.x, 2) + Math.pow(p.y - point.y,2) <= r*r;
     }
 }

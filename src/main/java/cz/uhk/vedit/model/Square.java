@@ -28,7 +28,7 @@ public class Square extends AbstractGraphicObject{
 
     @Override
     public boolean contains(Point p) {
-        //TODO implementovat zjistení bodu uvnitr ctverce
-        return false;
+        return a + point.x >= p.x && p.x >= point.x
+                && a + point.y >= p.y && p.y >= point.y;
     }
 }

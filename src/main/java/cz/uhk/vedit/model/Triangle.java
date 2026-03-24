@@ -31,12 +31,19 @@ public class Triangle extends AbstractGraphicObject{
         g.drawLine(point.x, point.y - 2*h/3, point.x + a/2, point.y + h/3);
         g.drawLine(point.x + a/2, point.y + h/3,point.x - a/2, point.y +h/3);
 
+        /*g.drawLine(point.x, point.y, point.x + a, point.y);
+        int y2 = (int)*/
 
     }
 
     @Override
     public boolean contains(Point p) {
-        //TODO implementovat zjistení bodu uvnitr trojuhelniku
-        return false;
+        Circle inside = new Circle(point.x, point.y, Color.WHITE, 2*this.a/3);
+        return inside.contains(p);
+        /*double vc
+        double dy = point.y - p.y;
+        double dx = dy / Math.tan(Math.PI/3);*/
+
+
     }
 }
