@@ -34,6 +34,7 @@ public class DrawPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
                 selected = findObjectUnderMouse(e.getPoint());
                 if (selected != null) {
                     dx = e.getX() - selected.getPoint().x;
@@ -46,9 +47,8 @@ public class DrawPanel extends JPanel {
             @Override
             public void mouseDragged(MouseEvent e) {
                 super.mouseDragged(e);
-                selected = findObjectUnderMouse(e.getPoint());
                 if (selected != null) {
-                    selected.setPoint(e.getX()-3, e.getY()-3);
+                    selected.setPoint(e.getX()-dx, e.getY()-dy);
                     repaint();
                 }
             }

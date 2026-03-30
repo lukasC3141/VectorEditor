@@ -8,19 +8,35 @@ import java.awt.*;
 
 public abstract class AbstractGraphicObject {
     /**
-     * Referencni bod, od ktereho se bude tvar vykreslovat
+     * reference point, from where the object will be drawn
      */
-    protected Point point;
+    protected Point point = new Point(0, 0);
     /**
-     * Barva utvaru
+     * color of object
      */
-    protected Color color;
+    protected Color color = Color.BLACK;
+    /**
+     * default boolean for fill or line drawn object
+     */
+    protected boolean fill = false;
 
     public AbstractGraphicObject() {}
+
+    public AbstractGraphicObject(Point point, Color color, boolean fill) {
+        this.point = point;
+        this.color = color;
+        this.fill = fill;
+    }
 
     public AbstractGraphicObject(Point point, Color color) {
         this.point = point;
         this.color = color;
+    }
+
+    public AbstractGraphicObject(int x, int y, Color color, boolean fill) {
+        setPoint(x, y);
+        this.color = color;
+        this.fill = fill;
     }
 
     public AbstractGraphicObject(int x, int y, Color color) {

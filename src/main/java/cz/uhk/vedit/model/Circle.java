@@ -9,8 +9,18 @@ public class Circle extends AbstractGraphicObject{
         this.r = r;
     }
 
+    public Circle(Point point, Color color, int r, boolean fill) {
+        super(point, color, fill);
+        this.r = r;
+    }
+
     public Circle(Point point, Color color, int r) {
         super(point, color);
+        this.r = r;
+    }
+
+    public Circle(int x, int y, Color color, int r, boolean fill) {
+        super(x, y, color, fill);
         this.r = r;
     }
 
@@ -22,7 +32,8 @@ public class Circle extends AbstractGraphicObject{
     @Override
     public void draw(Graphics2D g) {
         g.setColor(color);
-        g.drawOval(point.x - r, point.y - r, 2*r, 2*r);
+        if (fill) g.fillOval(point.x - r, point.y - r, 2 * r, 2 * r);
+        else g.drawOval(point.x - r, point.y - r, 2 * r, 2 * r);
 
     }
 

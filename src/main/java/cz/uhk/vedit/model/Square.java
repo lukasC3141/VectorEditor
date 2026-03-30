@@ -10,8 +10,18 @@ public class Square extends AbstractGraphicObject{
         this.a = a;
     }
 
+    public Square(Point point, Color color, int a, boolean fill) {
+        super(point, color, fill);
+        this.a = a;
+    }
+
     public Square(Point point, Color color, int a) {
         super(point, color);
+        this.a = a;
+    }
+
+    public Square(int x, int y, Color color, int a, boolean fill) {
+        super(x, y, color, fill);
         this.a = a;
     }
 
@@ -23,7 +33,10 @@ public class Square extends AbstractGraphicObject{
     @Override
     public void draw(Graphics2D g) {
         g.setColor(color);
-        g.drawRect(point.x, point.y, a, a);
+        if (fill) {
+            g.fillRect(point.x, point.y, a, a);
+        }
+        else g.drawRect(point.x, point.y, a, a);
     }
 
     @Override

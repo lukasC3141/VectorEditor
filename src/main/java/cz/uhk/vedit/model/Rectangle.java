@@ -12,6 +12,12 @@ public class Rectangle extends AbstractGraphicObject{
         this.b = b;
     }
 
+    public Rectangle(Point point, Color color, int a, int b, boolean fill) {
+        super(point, color, fill);
+        this.a = a;
+        this.b = b;
+    }
+
     public Rectangle(Point point, Color color, int a, int b) {
         super(point, color);
         this.a = a;
@@ -24,10 +30,19 @@ public class Rectangle extends AbstractGraphicObject{
         this.b = b;
     }
 
+    public Rectangle(int x, int y, Color color, int a, int b, boolean fill) {
+        super(x, y, color, fill);
+        this.a = a;
+        this.b = b;
+    }
+
     @Override
     public void draw(Graphics2D g) {
         g.setColor(color);
-        g.drawRect(point.x, point.y, a, b);
+        if (fill){
+            g.fillRect(point.x, point.y, a, b);
+        }
+        else g.drawRect(point.x, point.y, a, b);
     }
 
     @Override
