@@ -10,7 +10,7 @@ public abstract class AbstractGraphicObject {
     /**
      * reference point, from where the object will be drawn
      */
-    protected Point point = new Point(0, 0);
+    protected Point point = new Point(50, 50);
     /**
      * color of object
      */
@@ -70,6 +70,11 @@ public abstract class AbstractGraphicObject {
 
     public boolean contains(int x, int y){
         return contains(new Point(x,y));
+    }
+
+    public void moveBy(int dx, int dy){
+        point.translate(dx, dy);
+
     }
 
 

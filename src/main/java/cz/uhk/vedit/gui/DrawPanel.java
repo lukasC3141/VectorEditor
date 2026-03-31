@@ -14,6 +14,7 @@ public class DrawPanel extends JPanel {
     private List<AbstractGraphicObject> objects = new ArrayList<>();
     private AbstractGraphicObject selected;
     private int dx, dy; //soucet souradnice mysi od ref pointu
+    private Point oldMouse;
 
     public DrawPanel(List<AbstractGraphicObject> objects) {
         this.objects = objects;
@@ -25,6 +26,7 @@ public class DrawPanel extends JPanel {
 
     public void addObject(AbstractGraphicObject obj){
         objects.add(obj);
+        repaint();
     }
 
     private void initGui() {
@@ -37,8 +39,9 @@ public class DrawPanel extends JPanel {
                 super.mousePressed(e);
                 selected = findObjectUnderMouse(e.getPoint());
                 if (selected != null) {
-                    dx = e.getX() - selected.getPoint().x;
-                    dy = e.getY() - selected.getPoint().y;
+                    oldMouse = e.getPoint();
+                    //dx = e.getX() - selected.getPoint().x;
+                    //dy = e.getY() - selected.getPoint().y;
                 }
             }
         });
@@ -48,7 +51,12 @@ public class DrawPanel extends JPanel {
             public void mouseDragged(MouseEvent e) {
                 super.mouseDragged(e);
                 if (selected != null) {
-                    selected.setPoint(e.getX()-dx, e.getY()-dy);
+                    int dx = e.getX() - oldMouse.x;
+                    int dy = e.getY() - oldMouse.y;
+                    selected.moveBy(dx, dy);
+                    oldMouse = e.getPoint();
+                    //selected.setPoint(e.getX()-dx, e.getY()-dy);
+
                     repaint();
                 }
             }
