@@ -31,6 +31,7 @@ public class VeditFrame extends JFrame {
         drawPanel.addObject(new Square(150,220, Color.BLACK, 10));
         drawPanel.addObject(new Circle(200, 200, Color.BLUE, 20, true));
         drawPanel.addObject(new Triangle(122, 122, Color.BLACK, 100));
+        drawPanel.addObject(new Triangle(230, 122, Color.PINK, 120, true));
         drawPanel.addObject(new Circle(122, 122, Color.PINK, 20, true));
         drawPanel.addObject(new Circle(122));
         drawPanel.addObject(new Rectangle(200, 300,  Color.BLUE, 40, 100, true));

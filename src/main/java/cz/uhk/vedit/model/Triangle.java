@@ -32,29 +32,47 @@ public class Triangle extends AbstractGraphicObject{
         this.a = a;
     }
 
+    private Polygon getTriangle() {
+        int h = (int)(this.a * Math.sin(Math.PI / 3));
+        Polygon p = new Polygon();
+        p.addPoint(point.x - a/2, point.y + h/3);
+        p.addPoint(point.x, point.y - 2*h/3);
+        p.addPoint(point.x + a/2, point.y + h/3);
+        return p;
+    }
+
     @Override
     public void draw(Graphics2D g) {
-        //TODO add the fill method for triangle
         g.setColor(color);
-        int h = (int)(this.a * Math.sin(Math.PI / 3));
+        Polygon triangle = getTriangle();
+        if (fill){
+            g.fill(triangle);
+        }
+        else g.draw(triangle);
+    }
 
-        //point x, y is a center of gravity of Triangle
-        g.drawLine(point.x - a/2, point.y  + h/3, point.x, point.y - 2*h/3);
-        g.drawLine(point.x, point.y - 2*h/3, point.x + a/2, point.y + h/3);
-        g.drawLine(point.x + a/2, point.y + h/3,point.x - a/2, point.y +h/3);
-
-        /*g.drawLine(point.x, point.y, point.x + a, point.y);
-        int y2 = (int)*/
+    /**
+     * helper method for deducing the side of a halfplane
+     */
+    private double sign(Point p1, Point p2, Point p3) {
+        //cross product, the subtraction is for creating the vectors for the cross product
+        return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
     }
 
     @Override
     public boolean contains(Point p) {
-        //aproximation
-        //TODO calculate the point inside triangle
-        Circle inside = new Circle(point.x, point.y, Color.WHITE, 2*this.a/3);
-        return inside.contains(p);
-        /*double vc
-        double dy = point.y - p.y;
-        double dx = dy / Math.tan(Math.PI/3);*/
+        int h = (int)(this.a * Math.sin(Math.PI / 3)); // height
+
+        Point v1 = new Point(point.x - a/2, point.y + h/3);   // left
+        Point v2 = new Point(point.x, point.y - 2*h/3);       // up
+        Point v3 = new Point(point.x + a/2, point.y + h/3);   // down
+
+        // position of point to edge of triangle
+        double d1 = sign(p, v1, v2);
+        double d2 = sign(p, v2, v3);
+        double d3 = sign(p, v3, v1);
+
+        // all the values are more or equal to 0
+        return (d1 >= 0) && (d2 >= 0) && (d3 >= 0);
     }
 }
