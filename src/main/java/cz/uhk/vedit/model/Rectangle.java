@@ -36,6 +36,10 @@ public class Rectangle extends AbstractGraphicObject{
         this.b = b;
     }
 
+    public Point getCrosshairPosition() {
+        return new Point(this.point.x + this.a/2, this.point.y + this.b/2);
+    }
+
     @Override
     public void draw(Graphics2D g) {
         g.setColor(color);

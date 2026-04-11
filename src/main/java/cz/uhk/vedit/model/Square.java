@@ -30,6 +30,10 @@ public class Square extends AbstractGraphicObject{
         this.a = a;
     }
 
+    public Point getCrosshairPosition() {
+        return new Point(this.point.x + this.a/2, this.point.y + this.a/2);
+    }
+
     @Override
     public void draw(Graphics2D g) {
         g.setColor(color);

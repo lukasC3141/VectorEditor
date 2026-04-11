@@ -27,6 +27,10 @@ public class Triangle extends AbstractGraphicObject{
         this.a = a;
     }
 
+    public Point getCrosshairPosition() {
+        return this.point;
+    }
+
     public Triangle(int x, int y, Color color, int a) {
         super(x, y, color);
         this.a = a;

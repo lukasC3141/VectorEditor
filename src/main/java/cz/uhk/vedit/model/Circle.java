@@ -29,6 +29,10 @@ public class Circle extends AbstractGraphicObject{
         this.r = r;
     }
 
+    public Point getCrosshairPosition() {
+        return this.point;
+    }
+
     @Override
     public void draw(Graphics2D g) {
         g.setColor(color);

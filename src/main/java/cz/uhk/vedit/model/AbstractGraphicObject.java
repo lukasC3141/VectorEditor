@@ -18,7 +18,7 @@ public abstract class AbstractGraphicObject {
     /**
      * default boolean for fill or line drawn object
      */
-    protected boolean fill = false;
+    protected boolean fill = true;
 
     public AbstractGraphicObject() {}
 
@@ -64,6 +64,14 @@ public abstract class AbstractGraphicObject {
         this.color = color;
     }
 
+    public boolean isFill() {
+        return fill;
+    }
+
+    public void setFill(boolean fill) {
+        this.fill = fill;
+    }
+
     public abstract void draw(Graphics2D g); //nebo jen Graphics g
 
     public abstract boolean contains(Point p);
@@ -77,5 +85,6 @@ public abstract class AbstractGraphicObject {
 
     }
 
-
+    //crosshair for selected objects
+    public abstract Point getCrosshairPosition();
 }
